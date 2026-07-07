@@ -11,8 +11,6 @@ This is a natural language processing (NLP) pipeline that analyzes 500 real crim
 
 I created visuals to depict those patterns across different charge types and see the language judges use, which varied depending on the sensitivity of the case. I was also able to examine whether that variation might explain something about how public pressure shapes judicial behavior.
 
-This project is part of a broader research agenda I'm developing toward a peer-reviewed publication comparing judicial language across several East Asian countries and the United States.
-
 
 Purpose
 
@@ -34,10 +32,6 @@ accusation — the charge (e.g., intentional injury, theft, weapons possession)
 imprisonment — sentence length in months
 death_penalty / life_imprisonment — severity indicators
 
-
-
-
-
 This is real court data from real cases. The defendants are anonymized (referred to as 某某, a Chinese placeholder equivalent to "John Doe"), but the facts, charges, and sentences are genuine.
 
 
@@ -45,13 +39,22 @@ What I Found
 
 These are preliminary findings based on 500 cases. I'm expanding the dataset and adding sentiment modeling, but here's what the data shows so far:
 
-The most striking finding: weapons possession cases (非法持有枪支) are dominated almost entirely by state authority language, with virtually no leniency framing appearing across any of the cases in that category. By contrast, intentional injury cases (故意伤害) show a genuinely complex mix of all four language types — including notable leniency signals and defendant-positive framing.
+The most striking finding: weapons possession cases (非法持有枪支) are dominated almost entirely by state authority language, with almost no leniency framing appearing across any of the cases in that category. By contrast, intentional injury cases (故意伤害) show a complex mix of all four language types, including leniency signals and defendant-positive framing.
 
-What that might mean: Chinese courts appear to use significantly more state-centered, authoritative language in politically sensitive cases (like weapons) compared to more common cases like injury or theft. This could reflect the political stakes around weapons charges in China — or it could reflect judges writing defensively in cases they know will attract scrutiny.
+What that might mean: Chinese courts appear to use significantly more state-centered, authoritative language in politically sensitive cases (like weapons) compared to more common cases like injury or theft. This could reflect the political stakes around weapons charges in China, or it could reflect how judges writing defensively in cases they know will attract scrutiny.
 
-The leniency puzzle: When I plotted leniency language against sentence length, there was no clean correlation. Cases with high leniency keyword scores still received long sentences, and vice versa. This suggests judges may use mitigating language as procedural formality regardless of the actual outcome — which is itself an interesting finding about how Chinese judicial writing works.
+The leniency puzzle: When I plotted leniency language against sentence length, there was no clean correlation. Cases with high leniency keyword scores still received long sentences, and vice versa. This suggests judges may use mitigating language as procedural formality regardless of the actual outcome, which is an interesting finding about how Chinese judicial writing works, itself.
 
-FindingDetailMost common term被告人 ("defendant") — 2,149 hits across 500 casesVictim vs. defendant language ratio被害人 appears at ~60% the rate of 被告人Highest state authority languageWeapons possession cases by a significant marginMost linguistically complex casesIntentional injury — all four categories activeLeniency-sentence correlationWeak — leniency language does not predict shorter sentences
+Finding Details
+
+Most common term 被告人 ("defendant") — 2,149 hits across 500 cases
+Victim vs. defendant language ratio 被害人 appears at ~60% the rate of 被告人 
+Highest state authority language 
+Weapons possession cases by a significant margin 
+Most linguistically complex cases
+Intentional injury — all four categories active
+Leniency-sentence correlation
+Weak — leniency language does not predict shorter sentences
 
 
 How I Built This
@@ -60,7 +63,7 @@ I came into this project as a complete beginner in programming. I had never open
 
 1. Data loading — I pulled 500 cases directly from the CAIL2018 dataset using Hugging Face's datasets library, which lets you stream a small sample from a 2.6 million case corpus without downloading gigabytes of data.
 
-2. Chinese text tokenization — Chinese doesn't use spaces between words, so before any analysis you need a tokenizer. I used jieba, the standard Chinese NLP library, with a custom stopword list to filter out procedural filler words.
+2. Chinese text tokenization — Chinese doesn't use spaces between words, so before any analysis a tokenizer was needed. I used jieba, the standard Chinese NLP library, with a custom stopword list to filter out procedural filler words.
 
 3. Word frequency analysis — I counted the most common words across all 500 cases to understand what language dominates Chinese criminal verdicts. The results are heavy on state-centered procedural language: prosecution, evidence, government organs, forensic assessment.
 
@@ -81,27 +84,16 @@ pip install -r requirements.txt
 jupyter notebook 01_exploration.ipynb
 
 
-What's Coming Next
-
-
- Sentiment classification using a pretrained Chinese BERT model
- Expand dataset to 2,000–3,000 cases for stronger statistical validity
- Add Japan Supreme Court data for cross-system comparison
- Draft research paper for undergraduate journal submission
- Submit abstract to Midwest Political Science Association (MPSA)
-
-
-
 Technologies Used
 
-ToolWhat I Used It ForPython 3.14EverythingpandasData manipulation and analysisjiebaChinese text tokenizationHuggingFace datasetsStreaming the CAIL2018 datasetPlotlyInteractive chartstransformersSentiment modeling (in progress)
+This project was built using Python 3.14 as the core programming language, with pandas handling all data manipulation and cleaning, and jieba performing Chinese text tokenization. I loaded the CAIL2018 Supreme People's Court dataset using HuggingFace's datasets library, which allowed me to stream a manageable sample from a 2.6 million case corpus. All interactive charts and visualizations were built using Plotly, and sentiment modeling using a pretrained Chinese BERT model via the transformers library is currently in progress. Throughout development I used Claude, an AI assistant by Anthropic, as a debugging tool. All analytical decisions, research design, keyword dictionaries, interpretation of findings, and written analysis are entirely my own, and AI assistance is disclosed here in the interest of full transparency.
 
 
-About This Project
+About This Project and What's Coming Next
 
-This is independent undergraduate research in international politics and computational social science. I'm working toward a peer-reviewed publication on public opinion and judicial behavior in China, with a planned comparative extension to Japan, South Korea, and the United States.
+This project is the foundation of what I intend to become a peer-reviewed, published article and eventually, a comparative study spanning different East Asian Countries and the United States. Although I am rather new to the world of computational research and political science, I am committed to seeing this work coming become something special. 
 
-I'm very new to both coding and academic publishing, but I believe that's not a reason to aim small. If you're a researcher working on related questions, I'd genuinely love to connect.
+If you are a professor, conference reviewer, or researcher working on questions related to Chinese law, judicial behavior, or computaational social science, I welcome feedback, collaboration, and mentorship. Thank you. 
 
 Shria Dev
 GitHub: @shriadev
